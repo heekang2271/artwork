@@ -1,12 +1,28 @@
 import { Branch } from './branch.js';
 
+const COLOR_ARR = [
+  '#FF0000',
+  '#00FF00',
+  '#0000FF',
+  '#FFFF00',
+  '#FF00FF',
+  '#00FFFF',
+];
+
 export class Tree {
-  constructor(ctx, posX, posY) {
+  constructor(ctx, posX, posY, day) {
     this.ctx = ctx;
     this.posX = posX;
     this.posY = posY;
     this.branches = [];
     this.depth = 11;
+    this.day = day;
+
+    if (this.day) {
+      this.color = '#000000';
+    } else {
+      this.color = COLOR_ARR[Math.floor(Math.random() * COLOR_ARR.length)];
+    }
 
     this.cntDepth = 0;
     this.animation = null;
@@ -32,7 +48,7 @@ export class Tree {
     const endY = startY + this.sin(angle) * len * (this.depth - depth);
 
     this.branches[depth].push(
-      new Branch(startX, startY, endX, endY, this.depth - depth)
+      new Branch(startX, startY, endX, endY, this.depth - depth, this.color)
     );
 
     this.createBranch(endX, endY, angle - this.random(15, 23), depth + 1);

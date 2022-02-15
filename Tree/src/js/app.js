@@ -10,7 +10,39 @@ class App {
 
     window.addEventListener('resize', this.resize.bind(this), false);
     window.addEventListener('click', this.click.bind(this), false);
+
     this.resize();
+    this.setBtn();
+  }
+
+  setBtn() {
+    this.nightBtn = document.querySelector('.night');
+    this.dayBtn = document.querySelector('.day');
+
+    this.day = true;
+
+    this.nightBtn.addEventListener(
+      'click',
+      this.nightBtnHandler.bind(this),
+      false
+    );
+    this.dayBtn.addEventListener('click', this.dayBtnHandler.bind(this), false);
+  }
+
+  nightBtnHandler() {
+    this.resize();
+    this.dayBtn.classList.add('show');
+    this.nightBtn.classList.remove('show');
+    document.body.classList.add('black');
+    this.day = false;
+  }
+
+  dayBtnHandler() {
+    this.resize();
+    this.dayBtn.classList.remove('show');
+    this.nightBtn.classList.add('show');
+    document.body.classList.remove('black');
+    this.day = true;
   }
 
   resize() {
@@ -26,7 +58,8 @@ class App {
 
   click(event) {
     const { clientX } = event;
-    new Tree(this.ctx, clientX, this.stageHeight);
+    if (event.target.className !== 'material-icons')
+      new Tree(this.ctx, clientX, this.stageHeight, this.day);
   }
 }
 

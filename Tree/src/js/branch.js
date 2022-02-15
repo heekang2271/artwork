@@ -1,10 +1,10 @@
 export class Branch {
-  constructor(startX, startY, endX, endY, lineWidth) {
+  constructor(startX, startY, endX, endY, lineWidth, color) {
     this.startX = startX;
     this.startY = startY;
     this.endX = endX;
     this.endY = endY;
-    this.color = '#000000';
+    this.color = color;
     this.lineWidth = lineWidth;
 
     this.frame = 10;
@@ -14,6 +14,8 @@ export class Branch {
 
     this.currentX = this.startX;
     this.currentY = this.startY;
+
+    this.setColor();
   }
 
   draw(ctx) {
@@ -46,5 +48,16 @@ export class Branch {
     this.cntFrame++;
 
     return false;
+  }
+
+  setColor() {
+    if (this.color !== '#000000') {
+      if (this.lineWidth >= 10) {
+        this.color = '#FFFFFF';
+      } else {
+        let num = Math.floor((this.lineWidth / 10) * 15).toString(16);
+        this.color = this.color.replace(/0/gi, num);
+      }
+    }
   }
 }
