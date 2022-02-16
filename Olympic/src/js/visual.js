@@ -1,5 +1,5 @@
-import { Particle } from './particle';
-import { Point } from './point';
+import { Particle } from './particle.js';
+import { Point } from './point.js';
 
 export class Visual {
   constructor(pixeles, stageWidth, stageHeight) {
