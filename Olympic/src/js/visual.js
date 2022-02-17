@@ -7,9 +7,9 @@ export class Visual {
     this.stageWidth = stageWidth;
     this.stageHeight = stageHeight;
 
-    this.frame = 200;
-    this.acceleration = 1.00392;
-    this.friction = 0.9942;
+    this.frame = 100;
+    this.acceleration = 1.00492;
+    this.friction = 0.9912;
 
     this.isMouseDown = false;
 
