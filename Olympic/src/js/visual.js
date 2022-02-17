@@ -2,15 +2,16 @@ import { Particle } from './particle.js';
 import { Point } from './point.js';
 
 export class Visual {
-  constructor(pixeles, stageWidth, stageHeight) {
+  constructor(pixeles, stageWidth, stageHeight, pixelRatio) {
     this.pixeles = pixeles;
     this.stageWidth = stageWidth;
     this.stageHeight = stageHeight;
 
+    this.reversePixelRatio = 3 - pixelRatio;
     this.frame = 100;
-    this.acceleration = 1.00492;
-    this.friction = 0.9912;
-
+    this.acceleration = 1 + 0.00492 * this.reversePixelRatio;
+    this.friction = 1 - (0.0038 + 0.005 * this.reversePixelRatio);
+    // 0.9912;
     this.isMouseDown = false;
 
     this.particles = [];

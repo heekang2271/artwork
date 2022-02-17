@@ -23,7 +23,12 @@ class App {
       const pixeles = img.getDotPos();
       this.resize();
 
-      this.visual = new Visual(pixeles, this.stageWidth, this.stageHeight);
+      this.visual = new Visual(
+        pixeles,
+        this.stageWidth,
+        this.stageHeight,
+        this.pixelRatio
+      );
       this.visual.animate(this.ctx);
 
       window.addEventListener('mousedown', this.onMouseDown.bind(this));
